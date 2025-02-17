@@ -1,0 +1,81 @@
+/* Main container */
+.login {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Login form container */
+.loginContainer {
+    width: 85vw;
+    max-width: 900px;
+    height: 70vh;
+    display: flex;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 10px;
+}
+
+/* Left section */
+.left {
+    width: 50%;
+    background-color: #c7d7f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+/* Image styling */
+.loginImage {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Text below image */
+.text-ontop {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 50px;
+}
+
+.stay {
+    color: #3252DF;
+}
+
+.easy {
+    color: #152C5B;
+}
+
+/* Right section */
+.right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form styling */
+form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Custom styling for MUI inputs */
+.MuiTextField-root,
+.MuiFormControl-root {
+    margin-bottom: 15px;
+}

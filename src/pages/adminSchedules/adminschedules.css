@@ -1,0 +1,22 @@
+.adminSchedulesContainer {
+    height: 90vh;
+    margin-top: 10vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.admin-Schedules-body {
+    width: 90%;
+    height: 90%;
+    max-width: 90%;
+    padding: 20px;
+    background-color: white;
+}
+
+.admin-Schedules-head{
+    display: flex;
+    justify-content: flex-start;
+  }

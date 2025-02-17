@@ -1,0 +1,31 @@
+.adminContainer {
+  /* width: 90vw; */
+  margin-top: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.adminHead {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.adminHead h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.adminparentCards{
+    width: 90vw;
+}
+
+.css-rizt0-MuiTypography-root{
+  font-size: 10px !important;
+}
+.addrent{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,109 @@
+/* Ensure root container takes full height */
+.register {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+/* Center form container */
+.registerContainer {
+    width: 80vw;
+    max-width: 900px;
+    height: auto;
+    display: flex;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Left section */
+.left {
+    width: 50%;
+    background-color: #c7d7f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Ensures stacking of elements */
+    text-align: center;
+    padding: 20px;
+}
+
+/* Image styling */
+.registerImage {
+    width: 80%;
+    max-width: 300px; /* Ensures the image is not too big */
+    height: auto;
+    margin-bottom: 20px; /* Space between image and text */
+}
+
+/* Text below image */
+.text-ontop {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    font-size: 50px;
+}
+
+.stay {
+    color: #3252DF;
+}
+
+.easy {
+    color: #152C5B;
+}
+
+/* Right section */
+.right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Form container */
+.formContainer {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Reduce field sizes */
+.MuiTextField-root, .MuiFormControl-root {
+    margin-bottom: 10px;
+}
+
+.MuiButton-root {
+    height: 40px;
+    font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .registerContainer {
+        flex-direction: column;
+        width: 90vw;
+    }
+
+    .left {
+        width: 100%;
+        height: 200px;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .right {
+        width: 100%;
+        padding: 20px;
+    }
+}
