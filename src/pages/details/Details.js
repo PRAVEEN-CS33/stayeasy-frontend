@@ -126,7 +126,7 @@ function Details() {
             navigate('/user/schedules');
         } catch (e) {
             toast.error(e);
-        }   
+        }
     };
 
     const handleNext = () => {
@@ -171,7 +171,7 @@ function Details() {
                 await PaymentService.create(paymentData);
             }
         } catch (e) {
-            toast.error(e.response.data.message);
+            toast.error(e?.response?.data?.message);
         } finally {
             setTimeout(() => {
                 setOpen(false);

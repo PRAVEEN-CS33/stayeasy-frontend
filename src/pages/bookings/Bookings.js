@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './booking.css';
 import BookingCard from '../../components/bookingCard/BookingCard';
 import { BookingService } from '../../services/api';
+import { bookingsData } from '../../constants/sampleData';
 
 function Bookings() {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    getBookings();
+    if (bookingsData) {
+      setBookings(bookingsData);
+    } else {
+      getBookings();
+    }
   }, []);
 
   const getBookings = async () => {

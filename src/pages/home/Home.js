@@ -7,6 +7,7 @@ import { CalendarMonth, Person, LocationOn, Star, MonetizationOn, People } from 
 import PGCard from "../../components/card/Card";
 import { Typography } from "@mui/material";
 import { AccommodationService } from "../../services/api";
+import { accommodationsData } from "../../constants/sampleData";
 
 
 function Home() {
@@ -36,6 +37,7 @@ function Home() {
   };
 
   useEffect(() => {
+    setAccommodations(accommodationsData);
     const fetchData = async () => {
       try {
         const response = await AccommodationService.getAll();
@@ -85,7 +87,7 @@ function Home() {
                 displayEmpty
               >
                 <MenuItem value="">Location</MenuItem>
-                <MenuItem value="bangolore">Bangolore</MenuItem>
+                <MenuItem value="bangalore">Bangalore</MenuItem>
                 <MenuItem value="salem">Salem</MenuItem>
                 <MenuItem value="coimbatore">Coimbatore</MenuItem>
               </Select>

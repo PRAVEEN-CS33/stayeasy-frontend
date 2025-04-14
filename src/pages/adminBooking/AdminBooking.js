@@ -4,6 +4,7 @@ import { Paper, Select, MenuItem, FormControl } from '@mui/material';
 import './adminbooking.css';
 import { BookingService } from '../../services/api';
 import { toast } from 'react-toastify';
+import { adminBookingsData, bookingsData } from '../../constants/sampleData';
 
 
 const paginationModel = { page: 0, pageSize: 10 };
@@ -12,15 +13,19 @@ function AdminBooking() {
   const [bookings, setBookings] = useState();
 
   const handleBookingStatusChange = async (bookingId, newStatus) => {
-    try {
-      setBookings(bookings.map(booking =>
-        booking.id === bookingId ? { ...booking, status: newStatus } : booking
-      ));
-      await BookingService.ownerUpdate(bookingId, { status: newStatus });
-      toast.success("Booking status updated successfully!");
-    } catch (e) {
-      console.log("error: ", e);
-      toast.error("Unable to Booking status update! Try again");
+    if (bookingsData) {
+      setBookings(bookingsData);
+    } else {
+      try {
+        setBookings(bookings.map(booking =>
+          booking.id === bookingId ? { ...booking, status: newStatus } : booking
+        ));
+        await BookingService.ownerUpdate(bookingId, { status: newStatus });
+        toast.success("Booking status updated successfully!");
+      } catch (e) {
+        console.log("error: ", e);
+        toast.error("Unable to Booking status update! Try again");
+      }
     }
   };
 
@@ -34,7 +39,11 @@ function AdminBooking() {
   };
 
   useEffect(() => {
-    getBookings();
+    if(adminBookingsData){
+      setBookings(adminBookingsData);
+    }else{
+      getBookings();
+    }
   }, [])
 
   const getBookings = async () => {

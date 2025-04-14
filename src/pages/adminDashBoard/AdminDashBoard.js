@@ -24,6 +24,7 @@ import {
   Area,
 } from "recharts"
 import { AnalyticsService } from "../../services/api"
+import { testAnalyticsData } from "../../constants/sampleData"
 
 const DashboardContainer = styled(Container)(({ theme }) => ({
   paddingTop: theme.spacing(4),
@@ -44,81 +45,81 @@ const InfoCard = styled(Card)(({ theme }) => ({
 }))
 
 // // Mock AnalyticsService
-// const AnalyticsService = {
-//   getOwnerAnalytics: () =>
-//     Promise.resolve({
-//       Bookings: {
-//         "Total Bookings Today": 2,
-//         "Total bookings this week": 16,
-//         "Total bookings this month": 16,
-//         "Total canceled bookings this month": 4,
-//         "Most booked property this month": {
-//           accommodation_id: 1,
-//           total: 16,
-//         },
-//         "Least booked property this month": {
-//           accommodation_id: 1,
-//           total: 16,
-//         },
-//         "Average stay days per booking": "25.4400",
-//         "Longest stay booking this month": {
-//           booking_id: 36,
-//           accommodation_id: 1,
-//           user_id: 1,
-//           max: 46,
-//         },
-//         "Most common check-in day": 1,
-//       },
-//       Revenue: {
-//         "Total revenue this month": "99002.00",
-//         "Average rent per booking": "9000.181818",
-//       },
-//       GuestEngagement: {
-//         "Most common booking preference": "Couples",
-//         "Visits converted into bookings this month": 3,
-//         "Percentage of scheduled visits converted to bookings": 15,
-//       },
-//       Visits: {
-//         "Total visits scheduled today": 2,
-//         "Total visits scheduled this week": 3,
-//         "Most visited property": {
-//           accommodation_id: 1,
-//           total: 20,
-//         },
-//         "Least visited property": {
-//           accommodation_id: 1,
-//           total: 20,
-//         },
-//       },
-//       PropertyPerformance: {
-//         "Overall occupancy rate": 2.4390243902439024,
-//         "Highest occupancy rate property": {
-//           rate: 2500,
-//           Accommodation: 1,
-//         },
-//         "Lowest occupancy rate property": {
-//           rate: 2500,
-//           Accommodation: 1,
-//         },
-//         "Average booking lead days": "21.6000",
-//         "Properties fully booked at least once per month": [1],
-//       },
-//       Reviews: {
-//         "New reviews received this month": 22,
-//         "Average rating across all properties": "4.5455",
-//         "Highest-rated property": {
-//           accommodation_id: 1,
-//           total: 22,
-//           avg_rating: "4.5455",
-//         },
-//         "Lowest-rated property": {
-//           accommodation_id: 1,
-//           total: 22,
-//           avg_rating: "4.5455",
-//         },
-//       },
-//     }),
-// }
+const AnalyticsServiceData = {
+  getOwnerAnalytics: () =>
+    Promise.resolve({
+      Bookings: {
+        "Total Bookings Today": 2,
+        "Total bookings this week": 16,
+        "Total bookings this month": 16,
+        "Total canceled bookings this month": 4,
+        "Most booked property this month": {
+          accommodation_id: 1,
+          total: 16,
+        },
+        "Least booked property this month": {
+          accommodation_id: 1,
+          total: 16,
+        },
+        "Average stay days per booking": "25.4400",
+        "Longest stay booking this month": {
+          booking_id: 36,
+          accommodation_id: 1,
+          user_id: 1,
+          max: 46,
+        },
+        "Most common check-in day": 1,
+      },
+      Revenue: {
+        "Total revenue this month": "99002.00",
+        "Average rent per booking": "9000.181818",
+      },
+      GuestEngagement: {
+        "Most common booking preference": "Couples",
+        "Visits converted into bookings this month": 3,
+        "Percentage of scheduled visits converted to bookings": 15,
+      },
+      Visits: {
+        "Total visits scheduled today": 2,
+        "Total visits scheduled this week": 3,
+        "Most visited property": {
+          accommodation_id: 1,
+          total: 20,
+        },
+        "Least visited property": {
+          accommodation_id: 1,
+          total: 20,
+        },
+      },
+      PropertyPerformance: {
+        "Overall occupancy rate": 2.4390243902439024,
+        "Highest occupancy rate property": {
+          rate: 2500,
+          Accommodation: 1,
+        },
+        "Lowest occupancy rate property": {
+          rate: 2500,
+          Accommodation: 1,
+        },
+        "Average booking lead days": "21.6000",
+        "Properties fully booked at least once per month": [1],
+      },
+      Reviews: {
+        "New reviews received this month": 22,
+        "Average rating across all properties": "4.5455",
+        "Highest-rated property": {
+          accommodation_id: 1,
+          total: 22,
+          avg_rating: "4.5455",
+        },
+        "Lowest-rated property": {
+          accommodation_id: 1,
+          total: 22,
+          avg_rating: "4.5455",
+        },
+      },
+    }),
+}
 
 const InfoCardDet = ({ title, value }) => {
 
@@ -437,20 +438,25 @@ export default function AdminDashboard() {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const fetchAnalytics = async () => {
-      try {
-        const data = await AnalyticsService.getOwnerAnalytics()
-        setAnalyticsData(data.data)
-        console.log(data.data)
-      } catch (error) {
-        console.error("Error fetching analytics:", error)
-        setError("Failed to fetch analytics data. Please try again later.")
-      } finally {
-        setLoading(false)
+    if (testAnalyticsData) {
+      setAnalyticsData(testAnalyticsData);
+      setLoading(false)
+    } else {
+      const fetchAnalytics = async () => {
+        try {
+          const data = await AnalyticsService.getOwnerAnalytics()
+          setAnalyticsData(data.data)
+          console.log(data.data)
+        } catch (error) {
+          console.error("Error fetching analytics:", error)
+          setError("Failed to fetch analytics data. Please try again later.")
+        } finally {
+          setLoading(false)
+        }
       }
-    }
 
-    fetchAnalytics()
+      fetchAnalytics()
+    }
   }, [])
 
   if (loading) {

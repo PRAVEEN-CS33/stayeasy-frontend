@@ -39,6 +39,7 @@ import {
 } from "@mui/material";
 import { AccommodationService, ServiceService, SharingRentService } from "../../services/api";
 import { toast } from "react-toastify";
+import { adminAccommodations } from "../../constants/sampleData";
 
 const theme = createTheme({
     palette: {
@@ -149,7 +150,11 @@ function AdminAccommodations() {
         setEditAccommodation(null)
     }
     useEffect(() => {
-        fetchAccommodations();
+        if (adminAccommodations) {
+            setRows(adminAccommodations);
+        } else {
+            fetchAccommodations();
+        }
     }, []);
 
     const fetchAccommodations = async () => {
@@ -302,9 +307,9 @@ function AdminAccommodations() {
                 television: false,
                 biometric_entry: false,
             });
-            setRents([{ 
-                sharing_type: "", 
-                rent_amount: "" 
+            setRents([{
+                sharing_type: "",
+                rent_amount: ""
             }]);
         }
     }

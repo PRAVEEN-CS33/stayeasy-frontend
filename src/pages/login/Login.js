@@ -58,7 +58,20 @@ function Login() {
         toast.error("Login failed. Please try again.");
       }
     } catch (error) {
-      setError(error.response?.data.message || "Something went wrong. Please try again.");
+      if (formData.email === "test@gmail.com" && formData.password === "test@123") {
+        setSuccess("Login successful!");
+        toast.success("Log in successfully!");
+
+        setTimeout(() => {
+          if (formData.role === "admin") {
+            navigate("/admin");
+          } else {
+            navigate("/home");
+          }
+        });
+      } else {
+        setError(error.response?.data.message || "Something went wrong. Please try again.");
+      }
     }
   };
 
@@ -124,7 +137,10 @@ function Login() {
               Login
             </Button>
             <p>I don't have account <a href='/register'>Register</a></p>
+            <p><b>email: </b>test@gmail.com <br /><b>pass: </b>test@123
+            </p>
           </form>
+
 
         </div>
       </div>

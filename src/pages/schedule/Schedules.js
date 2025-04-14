@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import BookingCard from '../../components/bookingCard/BookingCard';
 import { ScheduledVisitService } from '../../services/api';
+import { scheduleData } from '../../constants/sampleData';
 
 function Schedules() {
   const [schedule, setSchedules] = useState([]);
   useEffect(() => {
-    gets();
+    if (scheduleData) {
+      setSchedules(scheduleData);
+    } else {
+      gets();
+    }
   }, []);
   const gets = async () => {
     try {
@@ -23,20 +28,20 @@ function Schedules() {
       }
     }
   };
-  const handleDelete = async (id, data)=>{
-      try{
-        const res = await ScheduledVisitService.update(id, data);
-        console.log(res.data);
-      }catch(e){
-        console.error("Error on deleting:", e)
-      }finally{
-        gets();
-      }
+  const handleDelete = async (id, data) => {
+    try {
+      const res = await ScheduledVisitService.update(id, data);
+      console.log(res.data);
+    } catch (e) {
+      console.error("Error on deleting:", e)
+    } finally {
+      gets();
     }
-  
-    const handleEdit = async (id)=> {
-  
-    }
+  }
+
+  const handleEdit = async (id) => {
+
+  }
 
   return (
     <div className='bookingsPage'>
@@ -44,7 +49,7 @@ function Schedules() {
         <h1>Scheduled Visites</h1>
         <div className='parentCards'>
           {schedule.map((schedul) => (
-            <BookingCard page={"schedules"} key={schedul.visit_id} row={schedul} status={schedul.status} handleDelete={handleDelete} handleEdit={handleEdit}/>
+            <BookingCard page={"schedules"} key={schedul.visit_id} row={schedul} status={schedul.status} handleDelete={handleDelete} handleEdit={handleEdit} />
           ))}
         </div>
       </div>
