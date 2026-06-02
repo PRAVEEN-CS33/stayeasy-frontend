@@ -37,8 +37,8 @@ function Register() {
     setLoading(true);
 
     const url = formData.role === 'owner'
-      ? 'http://127.0.0.1:8000/api/owners/register'
-      : 'http://127.0.0.1:8000/api/users/register';
+      ? process.env.REACT_APP_API_URL + '/api/owners/register'
+      : process.env.REACT_APP_API_URL + '/api/users/register';
 
     try {
       const response = await axios.post(url, formData, {

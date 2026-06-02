@@ -33,8 +33,8 @@ function Login() {
 
     const url =
       formData.role === "owner"
-        ? "http://127.0.0.1:8000/api/owners/login"
-        : "http://127.0.0.1:8000/api/users/login";
+        ? process.env.REACT_APP_API_URL + "/api/owners/login"
+        : process.env.REACT_APP_API_URL + "/api/users/login";
 
     try {
       const response = await axios.post(url, formData, {
